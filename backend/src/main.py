@@ -16,4 +16,5 @@ def handler(event, context):
 def handle_request(event):
     if event["httpMethod"] == "OPTIONS":
         return {}
+    event["special"] = "WOW!"
     return event
