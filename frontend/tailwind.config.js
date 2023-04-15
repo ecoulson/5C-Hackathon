@@ -12,6 +12,9 @@ module.exports = {
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
             },
+            maxHeight: {
+                '1/2': '55vh',
+            },
             minHeight: {
                 '1/2-vh': '50vh',
                 16: '64px',
@@ -29,6 +32,10 @@ module.exports = {
                 green: '#5CBD76',
                 gray: '#B0B0B0',
                 'dark-gray': '#7A7A7A',
+                card: '#FFFBFE',
+                link: '#003366',
+                inactive: '#D9D9D9',
+                active: '#A3A3A3',
             },
         },
     },

@@ -22,13 +22,7 @@ export default function Preview() {
             </Center>
             <Center>
                 <div className="flex flex-col gap-y-4">
-                    <PrimaryButton
-                        onClick={() => {
-                            // make translate call
-                            window.localStorage.removeItem('preview')
-                            router.push('/translate')
-                        }}
-                    >
+                    <PrimaryButton onClick={() => router.push('/translate')}>
                         <Image src="camera.svg" alt="" width={25} height={25} />
                         <SecondaryText>Translate Text</SecondaryText>
                         <Image src="arrow.svg" alt="" width={25} height={25} />

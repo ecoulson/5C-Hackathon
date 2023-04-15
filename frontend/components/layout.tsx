@@ -14,9 +14,11 @@ export default function Layout({
 }: LayoutProps) {
     return (
         <Container>
-            {hideNavbar ? null : <Navbar pageName={pageName ?? ''} />}
-            <div className="p-4 min-h-screen flex flex-col justify-around z-0">
-                {children}
+            <div className="flex min-h-screen shrink grow flex-col items-stretch">
+                {hideNavbar ? null : <Navbar pageName={pageName ?? ''} />}
+                <div className="p-4 flex grow shrink-0 flex-col z-0 justify-around items-stretch">
+                    {children}
+                </div>
             </div>
         </Container>
     )
