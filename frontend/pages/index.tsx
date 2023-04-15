@@ -11,7 +11,7 @@ export default function Home() {
     const router = useRouter()
 
     return (
-        <Layout>
+        <Layout hideNavbar>
             <Text>
                 Get your ballot translated and read out loud to you in your
                 native language.

@@ -5,12 +5,19 @@ interface ImageProps {
     alt: string
     width?: number
     height?: number
+    onClick?: () => void
 }
 
-export default function Image({ src, alt, width, height }: ImageProps) {
+export default function Image({
+    src,
+    alt,
+    width,
+    height,
+    onClick,
+}: ImageProps) {
     return (
         <NextImage
-            className="mx-auto"
+            onClick={onClick}
             width={width}
             height={height}
             sizes="100vw"
