@@ -1,8 +1,12 @@
-export default function ScreenshotButton() {
+interface ScreenshotButtonProps {
+    onClick?: () => void
+}
+
+export default function ScreenshotButton({ onClick }: ScreenshotButtonProps) {
     return (
-        <div className="relative flex justify-center h-24">
+        <button className="relative flex justify-center h-24" onClick={onClick}>
             <div className="absolute rounded-full border-white border-6 box-content w-18 min-h-18"></div>
             <div className="absolute top-2 rounded-full bg-white w-16 min-h-16"></div>
-        </div>
+        </button>
     )
 }
