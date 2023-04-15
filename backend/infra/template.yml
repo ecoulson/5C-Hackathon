@@ -2,8 +2,8 @@ Resources:
   5CHackathonLambda:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/main.handler
-      CodeUri: ../
+      Handler: main.handler
+      CodeUri: ../bin
       Runtime: python3.9
       Timeout: 60
       Events:
