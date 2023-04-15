@@ -8,7 +8,8 @@ class TestImgToText(unittest.TestCase):
 
         actual_text = img_to_text('./ballot_imgs/ballot_test1.png', 
                                   'ballot_1_text.txt')
-        
+
+        # print(actual_text)
         self.assertTrue(expected_text in actual_text)
 
     def test_img_to_text_3(self):
@@ -21,14 +22,22 @@ class TestImgToText(unittest.TestCase):
         self.assertTrue(expected_text in actual_text)
 
     def test_img_to_text_4(self):
-        expected_text = 'Kelly Mark'
+        expected_text = 'KELLY MARK'
 
         actual_text = img_to_text('./ballot_imgs/ballot_test4.jpg', 
                                   'ballot_4_text.txt')
         
         # print(actual_text)
         self.assertTrue(expected_text in actual_text)
-    
+
+    def test_img_to_text_5(self):
+        expected_text = 'Official Primary Nonpartisan Ballot'
+
+        actual_text = img_to_text('./ballot_imgs/ballot_test5.jpg', 
+                                  'ballot_5_text.txt')
+        
+        # print(actual_text)
+        self.assertTrue(expected_text in actual_text)
 
 if __name__ == '__main__':
     unittest.main()
