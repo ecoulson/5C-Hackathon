@@ -21,7 +21,7 @@ GLOSSARY_URI = "gs://cloud-samples-data/translation/bistro_glossary.csv"
 # Comment this back in when you want to create a new glossary!
 # create_glossary(GLOSSARY_LANGS, PROJECT_ID, GLOSSARY_NAME, GLOSSARY_URI) 
 
-class TestImgToText(unittest.TestCase):        
+class TestTranslator(unittest.TestCase):        
 
     def test_translate_text(self):  
         
