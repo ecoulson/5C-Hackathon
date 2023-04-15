@@ -1,5 +1,5 @@
 import unittest
-from img_to_text import detect_text, pic_to_text
+from img_to_text import pic_to_text
 
 class TestImgToText(unittest.TestCase):        
 
@@ -9,7 +9,7 @@ class TestImgToText(unittest.TestCase):
         actual_text = pic_to_text('/Users/tobyfrank/Desktop/'
                                   'Spring 2023/5C-Hackathon/'
                                   'backend/src/ballot_imgs/b'
-                                  'allot_test1.png')
+                                  'allot_test1.png', 'ballot_text.txt')
         
         self.assertTrue(expected_text in actual_text)
     

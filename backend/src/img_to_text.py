@@ -1,44 +1,22 @@
+"""Converts text from an image to a string.
+
+    Example Usage:
+         pic_to_text('/Users/tobyfrank/Desktop/'
+                     'Spring 2023/5C-Hackathon/'
+                     'backend/src/ballot_imgs/b'
+                     'allot_test1.png', 'ballot_text.txt')
+"""
+
 from google.cloud import vision
 import io
 
-def detect_text(path: str, output_file: str):
-    """Detects text in the file."""
-    client = vision.ImageAnnotatorClient()
-
-    with io.open(path, 'rb') as image_file:
-        content = image_file.read()
-
-    image = vision.Image(content=content)
-
-    response = client.text_detection(image=image)
-    texts = response.text_annotations
-
-    image_text = []
-    for text in texts:
-        image_text.append(text.description)
-
-    paragraph = image_text[0]
-    paragraph = paragraph.replace('\n', ' ')
-    with open(output_file, "w") as text_file:
-        text_file.writelines(paragraph)
-
-    if response.error.message:
-        raise Exception(
-            '{}\nFor more info on error messages, check: '
-            'https://cloud.google.com/apis/design/errors'.format(
-                response.error.message))
-    
-    return paragraph
-
-
-def pic_to_text(infile):
+def pic_to_text(infile: str, output_file: str) -> str:
     """Detects text in an image file
 
-    ARGS
-    infile: path to image file
+    Args:
+        infile: a string of the path to image file.
 
-    RETURNS
-    String of text detected in image
+    Returns a string of text detected in image.
     """
 
     # Instantiates a client
@@ -54,6 +32,9 @@ def pic_to_text(infile):
     # For less dense text, use text_detection
     response = client.document_text_detection(image=image)
     text = response.full_text_annotation.text
-    print("Detected text: {}".format(text))
+
+    # Save text to an txt file:
+    with open(output_file, "w") as text_file:
+        text_file.writelines(text)
 
     return text
