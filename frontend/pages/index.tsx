@@ -5,8 +5,11 @@ import { OutlineButton } from '@/components/outline-button'
 import { PrimaryButton } from '@/components/primary-button'
 import SecondaryText from '@/components/secondary-text'
 import Text from '@/components/text'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+    const router = useRouter()
+
     return (
         <Layout>
             <Text>
@@ -26,9 +29,7 @@ export default function Home() {
                             alt=""
                         />
                         <Text>
-                            {navigator.language === 'en-US'
-                                ? 'English'
-                                : 'Other'}
+                            <b>English</b>
                         </Text>
                         <Image
                             width={15}
@@ -37,7 +38,7 @@ export default function Home() {
                             alt=""
                         />
                     </OutlineButton>
-                    <PrimaryButton>
+                    <PrimaryButton onClick={() => router.push('/instructions')}>
                         <SecondaryText>Get Started</SecondaryText>
                         <Image width={24} height={10} src="arrow.svg" alt="" />
                     </PrimaryButton>
