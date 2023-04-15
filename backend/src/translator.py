@@ -67,17 +67,18 @@ def create_glossary(languages, project_id, glossary_name, glossary_uri):
         print(e)
 
 def translate_text(
-    path_to_text_file, source_language_code, target_language_code, project_id, glossary_name
+    path_to_text_file, source_language_code, target_language_code, project_id, glossary_name, output_file
 ):
     """Translates text to a given language using a glossary
 
     ARGS
-    text: String of text to translate
+    path_to_text_file: path for the text file to translate
     source_language_code: language of input text
     target_language_code: language of output text
     project_id: GCP project id
     glossary_name: name you gave your project's glossary
         resource when you created it
+    output_file: the name of the file to write the translated text to
 
     RETURNS
     String of translated text
@@ -109,5 +110,10 @@ def translate_text(
         }
     )
 
+    translation = result.glossary_translations[0].translated_text
+
+    with open(output_file, "w") as text_file:
+        text_file.writelines(translation)
+
     # Extract translated text from API response
-    return result.glossary_translations[0].translated_text
+    return translation

@@ -1,7 +1,7 @@
 """Converts text from an image to a string.
 
     Example Usage:
-         pic_to_text('/Users/tobyfrank/Desktop/'
+         img_to_text('/Users/tobyfrank/Desktop/'
                      'Spring 2023/5C-Hackathon/'
                      'backend/src/ballot_imgs/b'
                      'allot_test1.png', 'ballot_text.txt')
@@ -10,7 +10,7 @@
 from google.cloud import vision
 import io
 
-def pic_to_text(infile: str, output_file: str) -> str:
+def img_to_text(infile: str, output_file: str) -> str:
     """Detects text in an image file
 
     Args:
