@@ -6,9 +6,32 @@ import { PrimaryButton } from '@/components/primary-button'
 import SecondaryText from '@/components/secondary-text'
 import Text from '@/components/text'
 import { useRouter } from 'next/router'
+import { Languages } from '@/data/languages'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
+    const [language, setLanguage] = useState('English')
     const router = useRouter()
+
+    useEffect(() => {
+        const details = findBrowserLanguageDetails()
+        setLanguage(details.language)
+        window.localStorage.setItem('localCode', details.code)
+        window.localStorage.setItem('localLanguage', details.language)
+    }, [])
+
+    function findBrowserLanguageDetails() {
+        const localLanguage = Languages.find((languageDetails) =>
+            navigator.language.startsWith(languageDetails.code)
+        )
+        if (!localLanguage) {
+            return {
+                language: 'English',
+                code: 'en',
+            }
+        }
+        return localLanguage
+    }
 
     return (
         <Layout hideNavbar>
@@ -29,7 +52,7 @@ export default function Home() {
                             alt=""
                         />
                         <Text>
-                            <b>English</b>
+                            <b>{language}</b>
                         </Text>
                         <Image
                             width={15}

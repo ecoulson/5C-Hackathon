@@ -3,12 +3,12 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: main.handler
-      CodeUri: ../bin
+      CodeUri: ../src
       Runtime: python3.9
       Timeout: 60
       Events:
         proxyAPI:
           Type: Api
           Properties:
-            Path: /api/{proxy+}
+            Path: /5c-hack-api
             Method: ANY

@@ -10,7 +10,8 @@
 from google.cloud import vision
 import io
 
-def img_to_text(infile: str, output_file: str) -> str:
+
+def img_file_to_text(infile: str) -> str:
     """Detects text in an image file
 
     Args:
@@ -33,15 +34,4 @@ def img_to_text(infile: str, output_file: str) -> str:
     response = client.document_text_detection(image=image)
     text = response.full_text_annotation.text
 
-    print(response)
-
-    # Save text to an txt file:
-    with open(output_file, "w") as text_file:
-        text_file.writelines(text)
-
     return text
-
-img_to_text('/Users/tobyfrank/Desktop/'
-            'Spring 2023/5C-Hackathon/'
-            'backend/src/ballot_imgs/b'
-            'allot_test5.jpg', 'ballot_5_text.txt')

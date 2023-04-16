@@ -4,7 +4,7 @@ import Text from './text'
 interface AudioPlayerProps {
     src: string
     playing: boolean
-    onComplete: (audio: HTMLAudioElement) => void
+    onComplete: () => void
 }
 
 export default function AudioPlayer({
@@ -55,7 +55,9 @@ export default function AudioPlayer({
                 clearInterval(timer)
             }
             if (audio) {
-                onComplete(audio)
+                setPositionMiliseconds(0)
+                audio.currentTime = 0
+                onComplete()
             }
         }
     }, [positionMiliseconds])

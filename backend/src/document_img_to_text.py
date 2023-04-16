@@ -1,14 +1,21 @@
 from google.api_core.client_options import ClientOptions
 from google.cloud import documentai
 
-project_id = 'stellar-lock-383803'
-location = 'us'
-processor_id = 'fe10beffb1e51643'
-file_path = './ballot_imgs/ballot_test5.jpg'
-mime_type = 'image/jpeg' # Refer to https://cloud.google.com/document-ai/docs/file-types for supported file types
+project_id = "stellar-lock-383803"
+location = "us"
+processor_id = "fe10beffb1e51643"
+file_path = "../ballot_imgs/ballot_test5.jpg"
+mime_type = "image/jpeg"  # Refer to https://cloud.google.com/document-ai/docs/file-types for supported file types
 
-def quickstart(project_id: str, location: str, processor_id: str,
-               file_path: str, mime_type: str, output_file: str):
+
+def quickstart(
+    project_id: str,
+    location: str,
+    processor_id: str,
+    file_path: str,
+    mime_type: str,
+    output_file: str,
+):
     # You must set the api_endpoint if you use a location other than 'us'.
     opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
 
@@ -34,8 +41,6 @@ def quickstart(project_id: str, location: str, processor_id: str,
     # https://cloud.google.com/python/docs/reference/documentai/latest/google.cloud.documentai_v1.types.Document
     document = result.document
 
-    print(document)
-
     with open(output_file, "w") as text_file:
         text_file.write(document.text)
 
@@ -43,5 +48,12 @@ def quickstart(project_id: str, location: str, processor_id: str,
     # print("The document contains the following text:")
     # print(document.text)
 
-quickstart(project_id, location, processor_id, file_path,
-                                 mime_type, 'ballot_5_doc_text.txt')
+
+quickstart(
+    project_id,
+    location,
+    processor_id,
+    file_path,
+    mime_type,
+    "../ballot_texts/ballot_5_doc_text.txt",
+)

@@ -17,6 +17,7 @@ text is also put into it's own specified text file.
 # Imports the Google Cloud client libraries
 from google.cloud import translate_v3beta1 as translate
 
+
 def create_glossary(languages, project_id, glossary_name, glossary_uri):
     """Creates a GCP glossary resource
     Assumes you've already manually uploaded a glossary to Cloud Storage
@@ -41,9 +42,7 @@ def create_glossary(languages, project_id, glossary_name, glossary_uri):
     name = client.glossary_path(project_id, location, glossary_name)
 
     # Set language codes
-    language_codes_set = translate.Glossary.LanguageCodesSet(
-        language_codes=languages
-    )
+    language_codes_set = translate.Glossary.LanguageCodesSet(language_codes=languages)
 
     gcs_source = translate.GcsSource(input_uri=glossary_uri)
 
@@ -62,12 +61,16 @@ def create_glossary(languages, project_id, glossary_name, glossary_uri):
     try:
         operation = client.create_glossary(parent=parent, glossary=glossary)
         operation.result(timeout=90)
-        print("Created glossary " + glossary_name + ".")
     except Exception as e:
         print(e)
 
+
 def translate_text(
-    path_to_text_file, source_language_code, target_language_code, project_id, glossary_name, output_file
+    path_to_text_file,
+    source_language_code,
+    target_language_code,
+    project_id,
+    glossary_name,
 ):
     """Translates text to a given language using a glossary
 
@@ -112,14 +115,16 @@ def translate_text(
 
     translation = result.glossary_translations[0].translated_text
 
-    with open(output_file, "w") as text_file:
-        text_file.writelines(translation)
-
     # Extract translated text from API response
     return translation
 
+
 def translate_text_str(
-    text_to_translate:str, source_language_code, target_language_code, project_id, glossary_name, output_file
+    text_to_translate: str,
+    source_language_code,
+    target_language_code,
+    project_id,
+    glossary_name,
 ):
     """Translates text to a given language using a glossary
 
@@ -156,14 +161,10 @@ def translate_text_str(
             "mime_type": "text/plain",  # mime types: text/plain, text/html
             "source_language_code": source_language_code,
             "target_language_code": target_language_code,
-            "glossary_config": glossary_config,
         }
     )
 
-    translation = result.glossary_translations[0].translated_text
-
-    with open(output_file, "w") as text_file:
-        text_file.writelines(translation)
+    translation = result.translations[0].translated_text
 
     # Extract translated text from API response
     return translation
